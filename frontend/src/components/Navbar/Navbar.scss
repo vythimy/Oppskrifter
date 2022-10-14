@@ -1,0 +1,26 @@
+$color-gray: #ddd;
+
+.Navbar {
+    display: flex;
+    height: 50px;
+    border-bottom: 1px solid $color-gray;
+
+    > img {
+        padding: 5px;
+        padding-right: 20px;
+    }
+
+    > div {
+        padding: 15px;
+
+        > a {
+            text-decoration: none;
+            color: black;
+        }
+
+        &:hover {
+            background-color: $color-gray;
+            cursor: pointer;
+        }
+    }
+}
