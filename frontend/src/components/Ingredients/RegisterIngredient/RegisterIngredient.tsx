@@ -13,6 +13,8 @@ const RegisterIngredient = () => {
 
     const [ingredients, setIngredients] = useState<IngredientsData[]>([]);
 
+    // Kunne denne blitt kalt i onChange-funksjonen istedenfor at onchange endrer en state som gjør at denne oppdaterer seg?
+    // Jeg ville iallfall testet det ut
     useEffect(() => {
         fetch("https://oppskrifter-backend.herokuapp.com/ingredients", {
             method: "GET",
@@ -29,7 +31,6 @@ const RegisterIngredient = () => {
     }, [inputIngredient]);
 
     console.log(ingredients);
-    if (!ingredients) return null;
 
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -54,14 +55,14 @@ const RegisterIngredient = () => {
         setInputIngredient("");
     };
 
-    const formatResult = (item: any) => {
+    const formatResult = (item: IngredientsData) => {
         return (
             <>
                 <span style={{ display: "block", textAlign: "left" }}>
                     id: {item._id}
                 </span>
                 <span style={{ display: "block", textAlign: "left" }}>
-                    name: {item.name}
+                    name: {item.ingredient}
                 </span>
             </>
         );
@@ -96,6 +97,7 @@ const RegisterIngredient = () => {
                         id="myinputfield"
                         type="text"
                         value={inputIngredient}
+                        // TODO: Her tror jeg du kan droppe pilfunksjonen og bare putte inn funksjonen, så får den automatisk e som parameter
                         onChange={(e) => handleChange(e)}
                         placeholder="Skriv inn ingrediens"
                     />
